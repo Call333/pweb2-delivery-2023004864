@@ -3,7 +3,7 @@ export class EncomendaController {
         this.encomendaService = encomendaService;
     }
 
-    criar = async (req, res) => {
+    criar = async (req, res) =>{
         try {
             const {descricao, origem, destino } = req.body;
 
