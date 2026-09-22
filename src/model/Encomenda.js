@@ -1,11 +1,12 @@
 export class Encomenda{
-    constructor({id, descricao, origem, destino, status, historico}) {
+    constructor({id, descricao, origem, destino, status, motoristaId, historico}) {
         this.id = id ? Numeber(id) : null;
         this.descricao = descricao;
         this.origem = origem;
         this.destino = destino;
         this.status = status || "CRIADA";
-        
+        this.motoristaId = motoristaId;
+
         this.historico = Array.isArray(historico) ? historico : [
             { data: new Date().toISOString(), status: this.status, descricao: "Encomeda registrada no sistema." }
         ]
