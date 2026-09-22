@@ -1,3 +1,4 @@
+import { Encomenda } from "../model/Encomenda.js";
 import { ValidationError } from "../utils/errors/ValidationError.js";
 
 export class EncomendaService {
