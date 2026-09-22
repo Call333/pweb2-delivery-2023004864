@@ -26,6 +26,7 @@ export class EncomendaRepository {
             origem: novaEncomenda.origem,
             destino: novaEncomenda.destino,
             status: novaEncomenda.status,
+            motoristaId: novaEncomenda.motoristaId,
             historico: novaEncomenda.historico
         });
     }
