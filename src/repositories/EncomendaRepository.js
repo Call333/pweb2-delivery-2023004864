@@ -16,11 +16,11 @@ export class EncomendaRepository {
     async create(dadosDaEncomenda) {
         const proximoId = this.database.proximo_id;
 
-        this.db.proximo_id += 1;
+        this.database.proximo_id += 1;
 
         const novaEncomenda = new Encomenda({id: proximoId, ...dadosDaEncomenda})
 
-        this.database.encomenda.push({
+        this.database.encomendas.push({
             id: novaEncomenda.id,
             descricao: novaEncomenda.descricao,
             origem: novaEncomenda.origem,
@@ -29,5 +29,7 @@ export class EncomendaRepository {
             motoristaId: novaEncomenda.motoristaId,
             historico: novaEncomenda.historico
         });
+
+        return novaEncomenda;
     }
 }
