@@ -1,4 +1,4 @@
-import { ValidationError } from "../utils/errors/ValidationError";
+import { ValidationError } from "../utils/errors/ValidationError.js";
 
 export class EncomendaService {
     constructor(encomendaRepository){

@@ -1,4 +1,4 @@
-import { AppError } from "./ApiError";
+import { AppError } from "./ApiError.js";
 
 export class ValidationError extends AppError {
     constructor(message){

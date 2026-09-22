@@ -1,4 +1,4 @@
-import { Encomenda } from "../model/Encomenda";
+import { Encomenda } from "../model/Encomenda.js";
 
 export class EncomendaRepository {
     constructor(database) {
