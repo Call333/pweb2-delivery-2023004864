@@ -3,7 +3,7 @@ export class EncomendaController {
         this.encomendaService = encomendaService;
     }
 
-    async criar(req, res) {
+    criar = async (req, res) => {
         try {
             const {descricao, origem, destino } = req.body;
 
@@ -13,7 +13,9 @@ export class EncomendaController {
 
             return res.status(201).json(novaEncomenda);
 
-        } catch(error) {
+        } catch(error) {    
+            console.error("====== ERRO CAPTURADO NO CONTROLLER ======", error);
+
             const statusCode = error.statusCode || 500;
 
             return res.status(statusCode).json({
