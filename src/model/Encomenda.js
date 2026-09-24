@@ -24,8 +24,10 @@ export class Encomenda{
         } else if(this.status === "EM_TRANSITO") {
             this.status = "ENTREGUE";
             this.adicionarHistorico("A encomenda foi entregue com sucesso.");
+        }  else if (this.status === 'ENTREGUE') {
+            throw new Error("Não é possível avançar uma encomenda que já foi ENTREGUE.");
         } else {
-            throw new Error(`Não foi possível avançar o status atual: ${this.status}`);
+            throw new Error(`Transição de status inválida a partir de: ${this.status}`);
         }
     }
 
