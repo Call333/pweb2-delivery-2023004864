@@ -24,4 +24,8 @@ export class EncomendaService {
 
         return await this.encomendaRepository.create(encomendaValidacao);
     }
+
+    async encontrarEncomendas(){
+        return await this.encomendaRepository.findAll();
+    }
 }
