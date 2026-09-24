@@ -54,4 +54,21 @@ export class EncomendaService {
         
         return await this.encomendaRepository.update(encomenda);
     }
+
+    async cancelarStatus(id) {
+        const dadosBrutos = await this.encomendaRepository.findById(id);
+        if(!dadosBrutos) {
+            throw new NotFoundError("Encomenda não encontrada.");
+        }
+
+        const encomenda = new Encomenda(dadosBrutos);
+
+        try {
+            encomenda.cancelar();
+        } catch (error) {
+            throw new UnprocessableEntityError(error.message);
+        }
+        
+        return await this.encomendaRepository.update(encomenda);
+    }
 }
