@@ -60,4 +60,23 @@ export class EncomendaController {
             })
         }
     }
+
+    cancelar = async (req, res) => {
+        try {
+            const { id } = req.params;
+            const encomendaAtualizada = await this.encomendaService.avancarStatus(id);
+
+            return res.status(200).json(encomendaAtualizada);
+            
+        } catch (error){
+            console.error("====== ERRO CAPTURADO NO CONTROLLER ======", error);
+
+            const statusCode = error.statusCode || 500;
+
+            return res.status(statusCode).json({
+                status: "error",
+                message: error.message
+            })
+        }
+    }
 }
