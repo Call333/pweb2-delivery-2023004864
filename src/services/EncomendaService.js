@@ -23,7 +23,14 @@ export class EncomendaService {
             throw new ConflictError("Encomenda duplicada ativa.")
         }
 
-        return await this.encomendaRepository.create(encomendaValidacao);
+        return await this.encomendaRepository.create({
+            descricao: encomendaValidacao.descricao,
+            origem: encomendaValidacao.origem,
+            destino: encomendaValidacao.destino,
+            status: encomendaValidacao.status,
+            motoristaId: encomendaValidacao.motoristaId,
+            historico: encomendaValidacao.historico
+        });
     }
 
     async encontrarEncomendas(){
