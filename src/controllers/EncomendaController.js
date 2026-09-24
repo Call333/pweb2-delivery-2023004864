@@ -79,4 +79,23 @@ export class EncomendaController {
             })
         }
     }
+
+    buscarHistorico = async (req, res) => {
+        try {
+            const { id } = req.params;
+            const historico = await this.encomendaService.obterHistorico(id);
+
+            return res.status(200).json(historico);
+            
+        } catch (error){
+            console.error("====== ERRO CAPTURADO NO CONTROLLER ======", error);
+
+            const statusCode = error.statusCode || 500;
+
+            return res.status(statusCode).json({
+                status: "error",
+                message: error.message
+            })
+        }
+    }
 }
