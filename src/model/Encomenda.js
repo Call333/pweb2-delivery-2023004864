@@ -15,4 +15,24 @@ export class Encomenda{
     isValid() {
         return !!(this.descricao && this.origem && this.destino);
     }
+
+    avancar() {
+        if(this.status === "CRIADA"){
+            this.status = "EM_TRANSITO";
+            this.adicionarHistorico("A encomenda saiu para entrega.");
+        } else if(this.status === "EM_TRANSITO") {
+            this.status = "ENTREGUE";
+            this.adicionarHistorico("A encomenda foi entregue com sucesso.");
+        } else {
+            throw new Error(`Não foi possível avançar o status atual: ${this.status}`);
+        }
+    }
+
+    adicionarHistorico(mensagem) {
+        this.historico.push({
+            data: new Date().toISOString(),
+            status: this.status,
+            descricao: mensagem || `Status alterado para ${this.status}`
+        });
+    }
 }
