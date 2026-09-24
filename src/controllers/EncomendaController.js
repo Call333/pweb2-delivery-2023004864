@@ -24,4 +24,21 @@ export class EncomendaController {
             })
         }   
     }
+
+    encontrarTodos = async (req, res) => {
+        try {
+            const encomendas = await this.encomendaService.encontrarEncomendas();
+
+            return res.status(200).json(encomendas);
+        } catch (error){
+            console.error("====== ERRO CAPTURADO NO CONTROLLER ======", error);
+
+            const statusCode = error.statusCode || 500;
+
+            return res.status(statusCode).json({
+                status: "error",
+                message: error.message
+            })
+        }
+    }
 }
