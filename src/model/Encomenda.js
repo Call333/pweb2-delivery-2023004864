@@ -31,6 +31,15 @@ export class Encomenda{
         }
     }
 
+    cancelar() {
+        if (this.status === "ENTREGUE") {
+            throw new Error("Não é possível cancelar uma encomenda que já foi entregue.");
+        }
+
+        this.status = "CANCELADA";
+        this.adicionarHistorico("A encomenda foi cancelada.");
+    }
+
     adicionarHistorico(mensagem) {
         this.historico.push({
             data: new Date().toISOString(),
