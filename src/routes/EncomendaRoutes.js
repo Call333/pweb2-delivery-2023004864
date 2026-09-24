@@ -13,5 +13,6 @@ const encomendaService = new EncomendaService(encomendaRepository);
 const encomendaController = new EncomendaController(encomendaService);
 
 router.post('/entregas', encomendaController.criar);
+router.get('/entregas', encomendaController.encontrarTodos);
 
 export default router;
