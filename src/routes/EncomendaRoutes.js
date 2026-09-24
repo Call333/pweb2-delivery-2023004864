@@ -14,6 +14,6 @@ const encomendaController = new EncomendaController(encomendaService);
 
 router.post('/entregas', encomendaController.criar);
 router.get('/entregas', encomendaController.encontrarTodos);
-router.patch('entregas/:id/avancar', encomendaController.avancar);
+router.patch('/entregas/:id/avancar', encomendaController.avancar);
 
 export default router;
