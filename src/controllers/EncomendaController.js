@@ -27,7 +27,9 @@ export class EncomendaController {
 
     encontrarTodos = async (req, res) => {
         try {
-            const encomendas = await this.encomendaService.encontrarEncomendas();
+            const { status } = req.query;
+
+            const encomendas = await this.encomendaService.encontrarEncomendas(status);
 
             return res.status(200).json(encomendas);
         } catch (error){
