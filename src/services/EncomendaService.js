@@ -2,6 +2,7 @@ import { Encomenda } from "../model/Encomenda.js";
 import { ValidationError } from "../utils/errors/ValidationError.js";
 import { ConflictError } from "../utils/errors/ConflictError.js";
 import { NotFoundError } from "../utils/errors/NotFoundError.js";
+import { UnprocessableEntityError } from "../utils/errors/UnprocessableEntityError.js";
 
 export class EncomendaService {
     constructor(encomendaRepository){
@@ -45,9 +46,12 @@ export class EncomendaService {
         }
 
         const encomenda = new Encomenda(dadosBrutos);
-
-        encomenda.avancar()
-
+        try {
+            encomenda.avancar();
+        } catch (error) {
+            throw new UnprocessableEntityError(error.message);
+        }
+        
         return await this.encomendaRepository.update(encomenda);
     }
 }
