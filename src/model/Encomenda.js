@@ -1,6 +1,7 @@
 export class Encomenda{
     constructor({id, descricao, origem, destino, status, motoristaId, historico}) {
-        this.id = id ? Numeber(id) : null;
+        this.id = id ? Number(id) : null;
+
         this.descricao = descricao;
         this.origem = origem;
         this.destino = destino;
