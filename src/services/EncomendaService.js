@@ -34,8 +34,15 @@ export class EncomendaService {
         });
     }
 
-    async encontrarEncomendas(){
-        return await this.encomendaRepository.findAll();
+    async encontrarEncomendas(statusFiltro){
+
+        const todasAsEncomendas = await this.encomendaRepository.findAll();
+
+        if(statusFiltro) {
+            return todasAsEncomendas.filter(e => e.status === statusFiltro);
+        }
+
+        return todasAsEncomendas;
     }
 
     async avancarStatus(id) {
