@@ -32,4 +32,10 @@ export class EncomendaRepository {
 
         return novaEncomenda;
     }
+
+    async findByDescricao(descricao) {
+        return this.database.encomendas.find(
+            e => e.descricao === descricao
+        ) || null;
+    }
 }
