@@ -71,4 +71,15 @@ export class EncomendaService {
         
         return await this.encomendaRepository.update(encomenda);
     }
+
+    async obterHistorico(id) {
+
+        const dadosBrutos = await this.encomendaRepository.findById(id);
+
+        if(!dadosBrutos) {
+            throw new NotFoundError("Encomenda não encontrada.");
+        }
+
+        return dadosBrutos.historico;
+    }
 }
