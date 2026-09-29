@@ -66,7 +66,7 @@ export class EncomendaController {
     cancelar = async (req, res) => {
         try {
             const { id } = req.params;
-            const encomendaAtualizada = await this.encomendaService.avancarStatus(id);
+            const encomendaAtualizada = await this.encomendaService.cancelarStatus(id);
 
             return res.status(200).json(encomendaAtualizada);
             
