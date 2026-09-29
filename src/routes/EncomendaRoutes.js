@@ -18,7 +18,7 @@ router.get('/entregas', encomendaController.encontrarTodos);
 router.get('/entregas/:id/historico', encomendaController.buscarHistorico);
 
 router.patch('/entregas/:id/avancar', encomendaController.avancar);
-router.patch('/entregas/:id/cancelar', encomendaController.avancar);
+router.patch('/entregas/:id/cancelar', encomendaController.cancelar);
 
 
 export default router;
