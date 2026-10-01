@@ -5,7 +5,7 @@ export class MotoristaRepository {
         this.database = database;
     }
 
-    create(dadosMotorista) {
+    async create(dadosMotorista) {
         const proximoId = this.database.proximo_id_motorista;
 
         this.database.proximo_id_motorista += 1;
