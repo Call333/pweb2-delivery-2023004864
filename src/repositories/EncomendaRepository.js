@@ -14,9 +14,9 @@ export class EncomendaRepository {
     }
 
     async create(dadosDaEncomenda) {
-        const proximoId = this.database.proximo_id;
+        const proximoId = this.database.proximo_id_encomenda;
 
-        this.database.proximo_id += 1;
+        this.database.proximo_id_encomenda += 1;
 
         const novaEncomenda = new Encomenda({
             id: proximoId,
