@@ -1,4 +1,4 @@
-import { Motorista } from "../model/Motorista";
+import { Motorista } from "../model/Motorista.js";
 
 export class MotoristaRepository {
     constructor(database) {

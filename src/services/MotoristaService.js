@@ -1,5 +1,5 @@
-import { Motorista } from "../model/Motorista";
-import { ValidationError } from "../utils/errors/ValidationError";
+import { Motorista } from "../model/Motorista.js";
+import { ValidationError } from "../utils/errors/ValidationError.js";
 
 export class MotoristaService {
     constructor(motoristaRepository) {
