@@ -1,5 +1,5 @@
 export class Motorista {
-    constructor({id, nome, cpf, placaVeiculo, status, entregas}) {
+    constructor({id, nome, cpf, placaVeiculo, status, encomendas}) {
         this.id = id ? Number(id) : null;
 
         this.nome = nome;
@@ -7,7 +7,7 @@ export class Motorista {
         this.placaVeiculo = placaVeiculo;
         this.status = status || "ATIVO";
 
-        this.encomendas = Array.isArray(entregas) ? entregas : [];
+        this.encomendas = Array.isArray(encomendas) ? encomendas : [];
     }
 
     isValid() {
