@@ -8,6 +8,7 @@
 import express from 'express';
 // import { criarRotas } from './src/routes/index.js';  // <- descomente quando criar as rotas
 import EncomendaRoutes from './src/routes/EncomendaRoutes.js';
+import MotoristaRoutes from './src/routes/MotoristaRoutes.js';
 
 const app = express();
 app.use(express.json());
@@ -17,7 +18,8 @@ app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
 // TODO: monte aqui o roteador da sua API (composition root em src/routes):
 // app.use('/api', criarRotas());
-app.use('/api/', EncomendaRoutes);
+app.use('/api', EncomendaRoutes);
+app.use('/api', MotoristaRoutes);
 // 404 para rotas não mapeadas (mantenha por último, antes do listen).
 app.use((req, res) => res.status(404).json({ erro: 'recurso não encontrado' }));
 
