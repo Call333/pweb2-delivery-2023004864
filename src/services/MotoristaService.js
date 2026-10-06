@@ -1,4 +1,5 @@
 import { Motorista } from "../model/Motorista.js";
+import { ConflictError } from "../utils/errors/ConflictError.js";
 import { ValidationError } from "../utils/errors/ValidationError.js";
 
 export class MotoristaService {
@@ -11,6 +12,12 @@ export class MotoristaService {
 
         if(!motoristaValidacao.isValid()) {
             throw new ValidationError("Os campos Nome e CPF precisam estar preenchidos.");
+        }
+
+        const motoristaDuplicado = await this.motoristaRepository.findByCpf(motoristaValidacao.cpf);
+
+        if(motoristaDuplicado) {
+            throw new ConflictError("O motorista já está registrado na base de dados.");
         }
 
         return await this.motoristaRepository.create({
@@ -31,4 +38,6 @@ export class MotoristaService {
 
         return todosOsMotoristas;
     }
+
+
 }
