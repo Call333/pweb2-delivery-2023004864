@@ -97,12 +97,23 @@ export class EncomendaService {
 
         const motoristaValido = await this.motoristaRepository.findById(idMotorista);
 
-        if(!motoristaValido && !encomendaValida) {
-            throw new NotFoundError("O motorista e/ou a encomenda não foram encontrados.");
+        if(!encomendaValida) {
+            throw new NotFoundError("A encomenda não foi encontrada.");
         }
-        
+
+        if(!motoristaValido) {
+            throw new NotFoundError("O motorista não foi encontrado.");
+        }
+
+        if(motoristaValido.status !== "ATIVO") {
+            throw new ValidationError("Não é possivel atribuir uma entrega a um motorista INATIVO.");
+        }
+
+        if(encomendaValida.status === "EM_TRANSITO") {
+            throw new UnprocessableEntityError("Não é possivel atribuir um motorista a uma encomenda EM TRANSITO.")
+        }
+
         const encomenda = new Encomenda(encomendaValida);
-        const motorista = new Motorista(motoristaValido);
 
         encomenda.atribuirMotorista(idMotorista);
 
