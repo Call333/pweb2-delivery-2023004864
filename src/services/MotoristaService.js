@@ -39,5 +39,7 @@ export class MotoristaService {
         return todosOsMotoristas;
     }
 
-
+    async encontrarMorista(id) {
+        return await this.motoristaRepository.findById(id);
+    }
 }
