@@ -24,4 +24,25 @@ export class MotoristaController {
             })
         }
     }
+
+    encontrarTodos = async (req, res) => {
+        try {
+
+            const { status } = req.query;
+
+            const motoristas = await this.motoristaService.encontrarMotoristas(status);
+
+            return res.status(200).json(motoristas);
+
+        } catch (error) {
+            console.error("====== ERRO CAPTURADO NO CONTROLLER ======", error);
+
+            const statusCode = error.statusCode || 500;
+
+            return res.status(statusCode).json({
+                status: "error",
+                message: error.message
+            })
+        }
+    }
 }
