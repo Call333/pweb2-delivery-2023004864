@@ -3,10 +3,12 @@ import { ValidationError } from "../utils/errors/ValidationError.js";
 import { ConflictError } from "../utils/errors/ConflictError.js";
 import { NotFoundError } from "../utils/errors/NotFoundError.js";
 import { UnprocessableEntityError } from "../utils/errors/UnprocessableEntityError.js";
+import { Motorista } from "../model/Motorista.js";
 
 export class EncomendaService {
-    constructor(encomendaRepository){
+    constructor(encomendaRepository, motoristaRepository){
         this.encomendaRepository = encomendaRepository;
+        this.motoristaRepository = motoristaRepository;
     }
 
     async criarEncomenda(dadosEncomenda){
@@ -88,5 +90,22 @@ export class EncomendaService {
         }
 
         return dadosBrutos.historico;
+    }
+
+    async atribuirMotorista(idEncomenda, idMotorista) {
+        const encomendaValida = this.encomendaRepository.findById(idEncomenda);
+
+        const motoristaValido = this.motoristaRepository.findById(idMotorista);
+
+        if(!motoristaValido && !encomendaValida) {
+            throw new NotFoundError("O motorista e/ou a encomenda não foram encontrados.");
+        }
+        
+        const encomenda = new Encomenda(encomendaValida);
+        const motorista = new Motorista(motoristaValido);
+
+        encomenda.atribuirMotorista(motorista.id);
+
+        return await this.encomendaRepository.update(encomenda);
     }
 }
