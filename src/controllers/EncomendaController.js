@@ -100,4 +100,24 @@ export class EncomendaController {
             })
         }
     }
+
+    atribuirMotorista = async (req, res) => {
+        try {
+            const { id } = req.params;
+            const { motoristaId } = req.body;
+
+            const atribuir = await this.encomendaService.atribuirMotorista(id, motoristaId);
+
+            return res.status(200).json(atribuir);
+        } catch (error) {
+            console.error("====== ERRO CAPTURADO NO CONTROLLER ======", error);
+
+            const statusCode = error.statusCode || 500;
+
+            return res.status(statusCode).json({
+                status: "error",
+                message: error.message
+            })
+        }
+    }
 }
