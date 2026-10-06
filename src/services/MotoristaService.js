@@ -21,4 +21,14 @@ export class MotoristaService {
             encomendas: motoristaValidacao.encomendas
         });
     }
+
+    async encontrarMotoristas(statusFiltro) {
+        const todosOsMotoristas = await this.motoristaRepository.findAll();
+
+        if(statusFiltro) {
+            return todosOsMotoristas.filter(m => m.status === statusFiltro);
+        }
+
+        return todosOsMotoristas;
+    }
 }
