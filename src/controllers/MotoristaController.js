@@ -66,4 +66,25 @@ export class MotoristaController {
             })
         }
     }
+
+    encontrarEntregas = async (req, res) => {
+        try {
+
+            const { id } = req.params;
+
+            const entregas = await this.motoristaService.encontrarEntregasDoMotorista(id);
+
+            return res.status(200).json(entregas);
+
+        } catch (error) {
+            console.error("====== ERRO CAPTURADO NO CONTROLLER ======", error);
+
+            const statusCode = error.statusCode || 500;
+
+            return res.status(statusCode).json({
+                status: "error",
+                message: error.message
+            })
+        }
+    }
 }
