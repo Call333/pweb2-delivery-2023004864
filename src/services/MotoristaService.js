@@ -25,7 +25,6 @@ export class MotoristaService {
             cpf: motoristaValidacao.cpf,
             placaVeiculo: motoristaValidacao.placaVeiculo,
             status: motoristaValidacao.status,
-            encomendas: motoristaValidacao.encomendas
         });
     }
 
@@ -39,7 +38,7 @@ export class MotoristaService {
         return todosOsMotoristas;
     }
 
-    async encontrarMorista(id) {
+    async encontrarMotorista(id) {
         return await this.motoristaRepository.findById(id);
     }
 }
