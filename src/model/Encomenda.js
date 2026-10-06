@@ -6,7 +6,7 @@ export class Encomenda{
         this.origem = origem;
         this.destino = destino;
         this.status = status || "CRIADA";
-        this.motoristaId = motoristaId;
+        this.motoristaId = motoristaId || null; 
 
         this.historico = Array.isArray(historico) ? historico : [
             { data: new Date().toISOString(), status: this.status, descricao: "Encomeda registrada no sistema." }
@@ -49,6 +49,6 @@ export class Encomenda{
     }
 
     atribuirMotorista(idMotorista) {
-        this.motoristaId = idMotorista;
+        this.motoristaId = Number(idMotorista);
     }
 }
