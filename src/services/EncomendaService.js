@@ -93,9 +93,9 @@ export class EncomendaService {
     }
 
     async atribuirMotorista(idEncomenda, idMotorista) {
-        const encomendaValida = this.encomendaRepository.findById(idEncomenda);
+        const encomendaValida = await this.encomendaRepository.findById(idEncomenda);
 
-        const motoristaValido = this.motoristaRepository.findById(idMotorista);
+        const motoristaValido = await this.motoristaRepository.findById(idMotorista);
 
         if(!motoristaValido && !encomendaValida) {
             throw new NotFoundError("O motorista e/ou a encomenda não foram encontrados.");

@@ -10,7 +10,7 @@ export class EncomendaRepository {
     }
 
     async findById(id) {
-        return this.database.encomendas.find(encomenda => encomenda.id === Number(id) || null);
+        return this.database.encomendas.find(encomenda => Number(encomenda.id) === Number(id)) || null;
     }
 
     async create(dadosDaEncomenda) {
@@ -53,7 +53,7 @@ export class EncomendaRepository {
     }
 
     async update(encomendaAlterada) {
-        const index = this.database.encomendas.findIndex(e => e.id === Number(encomendaAlterada.id));
+        const index = this.database.encomendas.findIndex(e => Number(e.id) === Number(encomendaAlterada.id));
 
         if(index !== -1) {
             this.database.encomendas[index] = {
@@ -62,13 +62,14 @@ export class EncomendaRepository {
                 origem: encomendaAlterada.origem,
                 destino: encomendaAlterada.destino,
                 status: encomendaAlterada.status,
-                motoristaId: encomendaAlterada.motoristaId,
+                motoristaId: encomendaAlterada.motoristaId ? Number(encomendaAlterada.motoristaId) : null,
                 historico: encomendaAlterada.historico
             };
 
-            return encomendaAlterada;
+            return this.database.encomendas[index];
         }
 
+        console.error(`=== REPOSITÓRIO ERRO: Não foi possível encontrar a encomenda com ID ${encomendaAlterada.id} para atualizar. ===`);
         return null;
     }
 }
