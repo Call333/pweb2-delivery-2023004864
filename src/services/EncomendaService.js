@@ -47,6 +47,16 @@ export class EncomendaService {
         return todasAsEncomendas;
     }
 
+    async encontrarUmaEncomenda(idEncomenda) {
+        const encomendaExistente = await this.encomendaRepository.findById(idEncomenda);
+
+        if(!encomendaExistente) {
+            throw new NotFoundError("A Encomenda não foi encontrada.");
+        }
+
+        return encomendaExistente;
+    }
+
     async avancarStatus(id) {
         
         const dadosBrutos = await this.encomendaRepository.findById(id);

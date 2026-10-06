@@ -40,8 +40,14 @@ export class MotoristaService {
         return todosOsMotoristas;
     }
 
-    async encontrarMotorista(id) {
-        return await this.motoristaRepository.findById(id);
+    async encontrarUmMotorista(id) {
+        const motoristaExistente = await this.motoristaRepository.findById(id);
+        
+        if(!motoristaExistente) {
+            throw new NotFoundError("O motorista não foi encontrado.")
+        }
+
+        return motoristaExistente;
     }
 
     async encontrarEntregasDoMotorista(motoristaId) {

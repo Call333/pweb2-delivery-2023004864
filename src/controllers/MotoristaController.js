@@ -51,7 +51,7 @@ export class MotoristaController {
 
             const { id } = req.params;
 
-            const motorista = await this.motoristaService.encontrarMotorista(id);
+            const motorista = await this.motoristaService.encontrarUmMotorista(id);
 
             return res.status(200).json(motorista);
 
