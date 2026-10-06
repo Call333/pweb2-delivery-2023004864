@@ -43,6 +43,34 @@ src/
 > O critério de **inversão de dependência** é verificado pelo professor **trocando o repository por
 > um Mock** que respeita o contrato — programe contra o contrato desde o início.
 
+## Documentação da API (End-points Mapeados)
+
+Todos os end-points utilizam o prefixo global `/api` estruturado no servidor principal.
+
+### 📦 Módulo de Entregas (Encomendas)
+
+| Verbo | Rota | Descrição | Status HTTP comum |
+| :--- | :--- | :--- | :--- |
+| **POST** | `/api/entregas` | Regista uma nova entrega no sistema. | `201`, `400`, `409` |
+| **GET** | `/api/entregas` | Lista todas as encomendas (com suporte a filtro `?status=`). | `200` |
+| **GET** | `/api/entregas/:id` | Procura e devolve as encomendas registradas (com suporte a filtro `?status=`). | `200` |
+| **GET** | `/api/entregas/:id/historico` | Devolve a lista de eventos e transições de uma entrega. | `200`, `404` |
+| **PATCH** | `/api/entregas/:id/avancar` | Avança o ciclo de status (`CRIADA → EM_TRANSITO → ENTREGUE`). | `200`, `404`, `422` |
+| **PATCH** | `/api/entregas/:id/cancelar` | Cancela uma entrega (desde que não esteja `ENTREGUE`). | `200`, `404`, `422` |
+| **PATCH** | `/api/entregas/:id/atribuir` | Vincula um motorista ativo a uma entrega no estado `CRIADA`. | `200`, `404`, `422` |
+
+### 🪪 Módulo de Motoristas
+
+| Verbo | Rota | Descrição | Status HTTP comum |
+| :--- | :--- | :--- | :--- |
+| **POST** | `/api/motoristas` | Regista um novo motorista com status inicial `ATIVO`. | `201`, `400`, `409` |
+| **GET** | `/api/motoristas` | Lista todos os motoristas registados (com suporte a filtro `?status=`). | `200` |
+| **GET** | `/api/motoristas/:id` | Procura e devolve os detalhes estruturados de um motorista. | `200`, `404` |
+| **GET** | `/api/motoristas/:id/entregas` | Lista apenas as encomendas atribuídas àquele motorista específico. | `200`, `404` |
+
+### 🛠️ Configurações de Sistema Gerais
+- **GET** `/api/health` → Retorna `{ "status": "ok" }` para validação do contrato de execução.
+
 ## Contrato (resumo)
 
 - Base `/api` · JSON · erro `{ "erro": "..." }` · `GET /api/health` → `{ "status": "ok" }`.
