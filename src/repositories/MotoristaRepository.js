@@ -43,4 +43,8 @@ export class MotoristaRepository {
     async findById(id) {
         return this.database.motoristas.find(m => m.id === Number(id) || null);
     }
+
+    async findByCpf(cpf) {
+        return this.database.motoristas.find(m => m.cpf === cpf || null);
+    }
 }
