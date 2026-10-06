@@ -15,4 +15,6 @@ const motoristaController = new MotoristaController(motoristaService);
 
 router.post('/motoristas', motoristaController.criar);
 
+router.get('/motoristas', motoristaController.encontrarTodos);
+
 export default router;
