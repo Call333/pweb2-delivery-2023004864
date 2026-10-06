@@ -47,4 +47,8 @@ export class Encomenda{
             descricao: mensagem || `Status alterado para ${this.status}`
         });
     }
+
+    atribuirMotorista(idMotorista) {
+        this.motoristaId = idMotorista;
+    }
 }
