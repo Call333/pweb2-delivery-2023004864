@@ -104,7 +104,7 @@ export class EncomendaService {
         const encomenda = new Encomenda(encomendaValida);
         const motorista = new Motorista(motoristaValido);
 
-        encomenda.atribuirMotorista(motorista.id);
+        encomenda.atribuirMotorista(idMotorista);
 
         return await this.encomendaRepository.update(encomenda);
     }
