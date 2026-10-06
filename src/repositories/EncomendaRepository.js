@@ -72,4 +72,8 @@ export class EncomendaRepository {
         console.error(`=== REPOSITÓRIO ERRO: Não foi possível encontrar a encomenda com ID ${encomendaAlterada.id} para atualizar. ===`);
         return null;
     }
+
+    async findByMotoristaId(motoristaId) {
+        return this.database.encomendas.filter(e => Number(e.motoristaId) === Number(motoristaId));
+    }
 }
