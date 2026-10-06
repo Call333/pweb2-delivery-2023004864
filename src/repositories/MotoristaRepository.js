@@ -35,4 +35,8 @@ export class MotoristaRepository {
 
         return novoMotorista;
     }
+
+    async findAll() {
+        return this.database.motoristas;
+    }
 }
