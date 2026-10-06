@@ -1,10 +1,12 @@
 import { Motorista } from "../model/Motorista.js";
 import { ConflictError } from "../utils/errors/ConflictError.js";
+import { NotFoundError } from "../utils/errors/NotFoundError.js";
 import { ValidationError } from "../utils/errors/ValidationError.js";
 
 export class MotoristaService {
-    constructor(motoristaRepository) {
+    constructor(motoristaRepository, encomendaRepository) {
         this.motoristaRepository = motoristaRepository;
+        this.encomendaRepository = encomendaRepository;
     }
 
     async criarMotorista(dadosMotorista) {
@@ -40,5 +42,15 @@ export class MotoristaService {
 
     async encontrarMotorista(id) {
         return await this.motoristaRepository.findById(id);
+    }
+
+    async encontrarEntregasDoMotorista(motoristaId) {
+        const motoristaExistente = await this.motoristaRepository.findById(motoristaId);
+
+        if(!motoristaExistente) {
+            throw new NotFoundError("O Motorista não foi encontrado.");
+        }
+
+        return await this.encomendaRepository.findByMotoristaId(motoristaId);
     }
 }
