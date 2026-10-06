@@ -16,7 +16,6 @@ export class MotoristaRepository {
             cpf: dadosMotorista.cpf,
             placaVeiculo: dadosMotorista.placaVeiculo,
             status: dadosMotorista.status,
-            encomendas: dadosMotorista.encomendas
         });
 
         console.log("=== REPOSITÓRIO: A tentar inserir este motorista===", novoMotorista);
@@ -27,7 +26,6 @@ export class MotoristaRepository {
             cpf: novoMotorista.cpf,
             placaVeiculo: novoMotorista.placaVeiculo,
             status: novoMotorista.status,
-            encomendas: novoMotorista.encomendas
         })
 
         console.log("=== REPOSITÓRIO: Estado atual do banco mock ===", this.database.motoristas);
