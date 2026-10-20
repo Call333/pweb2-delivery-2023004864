@@ -120,7 +120,7 @@ export class EncomendaService {
         }
 
         if(motoristaValido.status !== "ATIVO") {
-            throw new ValidationError("Não é possivel atribuir uma entrega a um motorista INATIVO.");
+            throw new UnprocessableEntityError("Não é possivel atribuir uma entrega a um motorista INATIVO.");
         }
 
         const encomenda = new Encomenda(encomendaValida);

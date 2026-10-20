@@ -1,3 +1,5 @@
+import { Evento } from "./HistoricoEncomenda.js";
+
 export class Encomenda{
     constructor({id, descricao, origem, destino, status, motoristaId, historico}) {
         this.id = id ? Number(id) : null;
@@ -8,8 +10,12 @@ export class Encomenda{
         this.status = status || "CRIADA";
         this.motoristaId = motoristaId || null; 
 
-        this.historico = Array.isArray(historico) ? historico : [
-            { data: new Date().toISOString(), status: this.status, descricao: "Encomeda registrada no sistema." }
+        this.historico = Array.isArray(historico) ? historico.map(h => new Evento(h)) : [
+            new Evento({
+                data: new Date().toISOString(), 
+                status: this.status, 
+                descricao: "Encomeda registrada no sistema."
+            })
         ]
     }
 
@@ -41,11 +47,13 @@ export class Encomenda{
     }
 
     adicionarHistorico(mensagem) {
-        this.historico.push({
-            data: new Date().toISOString(),
-            status: this.status,
-            descricao: mensagem || `Status alterado para ${this.status}`
-        });
+        this.historico.push(
+            new Evento({
+                data: new Date().toISOString(),
+                status: this.status,
+                descricao: mensagem || `Status alterado para ${this.status}`
+            })
+        );
     }
 
     atribuirMotorista(idMotorista) {

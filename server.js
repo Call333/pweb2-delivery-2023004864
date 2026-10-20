@@ -10,6 +10,8 @@ import express from 'express';
 import EncomendaRoutes from './src/routes/EncomendaRoutes.js';
 import MotoristaRoutes from './src/routes/MotoristaRoutes.js';
 
+import { initDatabase } from './src/database/connection.js';
+
 const app = express();
 app.use(express.json());
 
@@ -24,4 +26,10 @@ app.use('/api', MotoristaRoutes);
 app.use((req, res) => res.status(404).json({ erro: 'recurso não encontrado' }));
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Delivery Tracker rodando em http://localhost:${PORT}`));
+
+async function startServer() {
+    await initDatabase();
+    app.listen(PORT, () => console.log(`Delivery Tracker rodando em http://localhost:${PORT}`));
+}
+
+startServer();

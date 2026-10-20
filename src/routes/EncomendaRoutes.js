@@ -1,16 +1,23 @@
 import express from 'express';
 
 import { EncomendaController } from '../controllers/EncomendaController.js';
+
 import { EncomendaService } from '../services/EncomendaService.js';
+
 import { EncomendaRepository } from '../repositories/EncomendaRepository.js';
+import { MotoristaRepository } from '../repositories/MotoristaRepository.js';
+import { SqlEncomendaRepository } from '../repositories/SqlEncomendaRepository.js';
+import { SqlMotoristaRepository } from '../repositories/SqlMotoristaRepository.js';
 
 import { database } from '../database/database.js';
-import { MotoristaRepository } from '../repositories/MotoristaRepository.js';
+
+import { EncomendaModel } from '../database/models/EncomendaModel.js';
+import { MotoristaModel } from '../database/models/MotoristaModel.js';
 
 const router = express.Router();
 
-const encomendaRepository = new EncomendaRepository(database);
-const motoristaRepository = new MotoristaRepository(database);
+const encomendaRepository = new SqlEncomendaRepository(EncomendaModel);
+const motoristaRepository = new SqlMotoristaRepository(MotoristaModel);
 const encomendaService = new EncomendaService(encomendaRepository, motoristaRepository);
 const encomendaController = new EncomendaController(encomendaService);
 
