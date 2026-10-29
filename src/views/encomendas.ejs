@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Encomendas</title>
+</head>
+<body>
+    <h1>Encomendas</h1>
+
+        <ol>
+        <%  encomendas.forEach( e => { %>
+            <hr>
+            <li>
+                <strong><%= e.descricao %> | Origem: <%= e.origem %> | Destino: <%= e.destino %> | Status: <%= e.status %></strong>
+
+                <h2>Movimentações</h2>
+                <% e.historico.forEach( h => { %>
+                <div>
+                    <hr>
+                    <p> <%= h.data %> </p>
+                    <p> <%= h.status %> </p>
+                    <p> <%= h.descricao %> </p>
+                </div>
+                <% }) %>
+            </li>
+        <% }) %>
+        </ol>
+
+</body>
+</html>
