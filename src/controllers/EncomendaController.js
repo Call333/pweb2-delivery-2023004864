@@ -52,9 +52,9 @@ export class EncomendaController {
         try {
             const { id } = req.params;
 
-            const encomendas = await this.encomendaService.encontrarUmaEncomenda(id);
+            const encomenda = await this.encomendaService.encontrarUmaEncomenda(id);
 
-            return res.status(200).json(encomendas);
+            return res.status(200).render('umaEncomenda', { encomenda } );
         } catch (error){
             console.error("====== ERRO CAPTURADO NO CONTROLLER ======", error);
 

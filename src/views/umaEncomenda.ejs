@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Encoemenda</title>
+</head>
+<body>
+    <ul>
+        <hr>
+        <li>
+            <strong><%= encomenda.descricao %> | Origem: <%= encomenda.origem %> | Destino: <%= encomenda.destino %> | Status: <%= encomenda.status %></strong>
+
+            <h2>Movimentações</h2>
+            <% encomenda.historico.forEach( h => { %>
+            <div>
+                <hr>
+                <p> <%= h.data %> </p>
+                <p> <%= h.status %> </p>
+                <p> <%= h.descricao %> </p>
+            </div>
+            <% }) %>
+        </li>
+    </ul>
+</body>
+</html>
