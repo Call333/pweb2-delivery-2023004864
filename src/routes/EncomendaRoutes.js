@@ -24,6 +24,7 @@ const encomendaController = new EncomendaController(encomendaService);
 router.post('/entregas', encomendaController.criar);
 
 router.get('/entregas', encomendaController.encontrarTodos);
+router.get('/entregas/nova', encomendaController.formCadastrarEncomenda);
 router.get('/entregas/:id/historico', encomendaController.buscarHistorico);
 router.get('/entregas/:id', encomendaController.encontrarUmaEncomenda);
 

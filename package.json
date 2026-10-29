@@ -9,6 +9,7 @@
     "check": "node autograder/check.mjs"
   },
   "dependencies": {
+    "ejs": "^7.0.2",
     "express": "^4.21.2",
     "sequelize": "^6.37.8",
     "sqlite3": "^6.0.1"

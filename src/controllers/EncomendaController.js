@@ -3,6 +3,10 @@ export class EncomendaController {
         this.encomendaService = encomendaService;
     }
 
+    formCadastrarEncomenda = async (req, res) => {
+        return res.status(200).render('formsEncomendas');
+    }
+
     criar = async (req, res) =>{
         try {
             const {descricao, origem, destino } = req.body;
@@ -11,7 +15,7 @@ export class EncomendaController {
                 descricao, origem, destino
             });
 
-            return res.status(201).json(novaEncomenda);
+            return res.status(201).redirect('/api/entregas');
 
         } catch(error) {    
             console.error("====== ERRO CAPTURADO NO CONTROLLER ======", error);
@@ -31,7 +35,7 @@ export class EncomendaController {
 
             const encomendas = await this.encomendaService.encontrarEncomendas(status);
 
-            return res.status(200).json(encomendas);
+            return res.status(200).render('encomendas', { encomendas });
         } catch (error){
             console.error("====== ERRO CAPTURADO NO CONTROLLER ======", error);
 
