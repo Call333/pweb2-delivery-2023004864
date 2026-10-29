@@ -12,6 +12,7 @@ import { dirname, join }  from 'path';
 // import { criarRotas } from './src/routes/index.js';  // <- descomente quando criar as rotas
 import EncomendaRoutes from './src/routes/EncomendaRoutes.js';
 import MotoristaRoutes from './src/routes/MotoristaRoutes.js';
+import methodOverride from 'method-override';
 
 import { initDatabase } from './src/database/connection.js';
 
