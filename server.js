@@ -18,7 +18,10 @@ import { initDatabase } from './src/database/connection.js';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: true }));
+
+app.use(methodOverride('_method'));
 
 // Health check exigido pelo contrato de execução (não remova).
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
